@@ -38,6 +38,7 @@ class Team:
     def withdrawFromTeam(self, index):
         p = self.team[index]
         self.team[index] = None
+        return p
 
     def chooseRandomFighter(self):
         index = random.randint(0, 5)
