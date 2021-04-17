@@ -1,5 +1,5 @@
 #Represents an instance of a pokemon storage pc
-import Pokemon
+
 class PC:
 
     MAX_SIZE = 30
