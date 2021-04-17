@@ -1,5 +1,5 @@
 #Represents an instance of a pokemon storage pc
-import Pokemon
+
 class PC:
 
     MAX_SIZE = 30
@@ -23,8 +23,7 @@ class PC:
 
     def withdraw(self, pokemon):
         if pokemon in self.pokemonList:
-            self.pokemonList.pop(pokemon)
-        return 0;
+            self.pokemonList.remove(pokemon)
 
 
     def deposit(self, pokemon):
@@ -44,20 +43,19 @@ class PC:
     def getMaxSize(self):
         return self.maxSize
 
-    def sortID(self):
+    def bubbleSort(arr):
+        n = len(arr)
 
-    def sortAttack(self):
+        # Traverse through all array elements
+        for i in range(n - 1):
+            # range(n) also work but outer loop will repeat one time more than needed.
 
-    def sortType(self):
+            # Last i elements are already in place
+            for j in range(0, n - i - 1):
 
-    def sortHealth(self):
-
-    def sortExp(self):
-
-
-
-
-
-
-
+                # traverse the array from 0 to n-i-1
+                # Swap if the element found is greater
+                # than the next element
+                if arr[j] > arr[j + 1]:
+                    arr[j], arr[j + 1] = arr[j + 1], arr[j]
 
