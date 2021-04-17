@@ -61,5 +61,17 @@ class PC:
     def sortHealth(self):
         self.pokemonList.sort(key=operator.attrgetter('health'))
 
+    def toString(self):
+        s = "Pc Box Contents: ["
+
+        # traverse in the string
+        for p in self.pokemonList:
+            s += p.name
+            s += ","
+        s+= "]"
+
+            # return string
+        return s
+
 
 
