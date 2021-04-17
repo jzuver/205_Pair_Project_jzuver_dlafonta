@@ -1,5 +1,6 @@
 import Battle
 
+
 # we're using the singleton design pattern for this
 # container class.
 #
@@ -55,6 +56,54 @@ class Arena:
         battle.setFighterOne(battle.getTeamOne().chooseRandomFighter())
         battle.setFighterTwo(battle.getTeamTwo().chooseRandomFighter())
 
-        #perform battle, print results.
-        battle.createBattle()
+        # perform battle, print results.
+        battle.startBattle()
+        self.addBattle(battle)
         print(battle.toString())
+
+    def getWinners(self):
+        winners = []
+        for b in self.battles:
+            if b.getWinner() == None:
+                continue
+            else:
+                winners.append(b.getWinner())
+
+        return winners
+
+    def showBattles(self):
+        counter = 1
+        for b in self.battles:
+            print("Battle: " + str(counter))
+            print(b.toString())
+            counter += 1
+
+    def getBattlesCorrect(self, team):
+        # correct version
+        battleList = []
+        for b in self.battles:
+            if b.getTeamOne() == team or b.getTeamTwo == team:
+                battleList.append(b)
+        if len(battleList) == 0:
+            print("Team has not been in any battles.")
+        else:
+            return battleList
+
+    def getBattlesIncorrect(self, team):
+        # incorrect implementation, team is appended
+        # instead of the battle
+        battleList = []
+        for b in self.battles:
+            if b.getTeamOne() == team or b.getTeamTwo == team:
+                battleList.append(team)
+        if len(battleList) == 0:
+            print("Team has not been in any battles.")
+        else:
+            return battleList
+
+    def findPokemonByName(self, name):
+        for p in self.pokemon:
+            if p.getName() == name:
+                return p
+        else:
+            print("Pokemon not currently in the arena.")

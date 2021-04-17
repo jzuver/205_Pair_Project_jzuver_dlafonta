@@ -51,7 +51,7 @@ class Battle:
 
         return s
 
-    def createBattle(self):
+    def startBattle(self):
         # have pokemon attack each other until one is knocked out,
         # set winner and loser accordingly
         if self.fighterOne is None or self.fighterTwo is None:

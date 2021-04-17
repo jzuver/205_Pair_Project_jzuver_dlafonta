@@ -4,11 +4,10 @@ class PC:
 
     MAX_SIZE = 30
 
-    def __init__(self, pokemonList, maxSize):
-        self.pokemonList = pokemonList
-        self.maxSize = maxSize
-        pokemonList = []
-        self.numStored = len(pokemonList)
+    def __init__(self):
+        self.maxSize = self.MAX_SIZE
+        self.pokemonList = []
+        self.numStored = len(self.pokemonList)
 
 
     def search(self, id):
@@ -66,8 +65,9 @@ class PC:
 
         # traverse in the string
         for p in self.pokemonList:
+            s +=  "-"
             s += p.name
-            s += ","
+            s += "-"
         s+= "]"
 
             # return string
