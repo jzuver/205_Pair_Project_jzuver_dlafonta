@@ -49,4 +49,12 @@ class Arena:
         self.PC.add(pc)
 
     def doBattle(self, teamOne, teamTwo):
+        # create instance of battle, pick a random pokemon from each team,
+        # and have them fight
+        battle = Battle.Battle(teamOne, teamTwo)
+        battle.setFighterOne(battle.getTeamOne().chooseRandomFighter())
+        battle.setFighterTwo(battle.getTeamTwo().chooseRandomFighter())
 
+        #perform battle, print results.
+        battle.createBattle()
+        print(battle.toString())

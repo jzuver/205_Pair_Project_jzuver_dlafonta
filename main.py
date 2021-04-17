@@ -1,6 +1,7 @@
 import Pokemon
-import Battle
+
 import Team
+import Arena
 
 # quick team and battle test
 p = Pokemon.Pokemon("Charizard", 15, "Fire", 100, 150, 50)
@@ -20,21 +21,7 @@ p12 = Pokemon.Pokemon("Dugtrio", 45, "Earth", 50, 75, 35)
 t = Team.Team(p, p2, p3, p4, p5, p6)
 t2 = Team.Team(p7, p8, p9, p10, p11, p12)
 
-b = Battle.Battle(t, t2)
-print(b.toString())
-
-#select fighters for battle
-b.setFighterOne(t.chooseRandomFighter())
-b.setFighterTwo(t2.chooseRandomFighter())
-print(b.toString())
-
-print("After Battle: ")
-b.createBattle()
-print(b.toString())
-
-print("Team one: ")
-print(t.toString())
-print("Team Two: ")
-print(t2.toString())
+arena = Arena.Arena().get()
+arena.doBattle(t, t2)
 
 
