@@ -1,5 +1,5 @@
 #Represents an instance of a pokemon storage pc
-
+import operator
 class PC:
 
     MAX_SIZE = 30
@@ -43,19 +43,23 @@ class PC:
     def getMaxSize(self):
         return self.maxSize
 
-    def bubbleSort(arr):
-        n = len(arr)
+    def sortID(self):
+        self.pokemonList.sort(key=operator.attrgetter('id'))
 
-        # Traverse through all array elements
-        for i in range(n - 1):
-            # range(n) also work but outer loop will repeat one time more than needed.
+    def sortName(self):
+        self.pokemonList.sort(key=operator.attrgetter('name'))
 
-            # Last i elements are already in place
-            for j in range(0, n - i - 1):
+    def sortType(self):
+        self.pokemonList.sort(key=operator.attrgetter('type'))
 
-                # traverse the array from 0 to n-i-1
-                # Swap if the element found is greater
-                # than the next element
-                if arr[j] > arr[j + 1]:
-                    arr[j], arr[j + 1] = arr[j + 1], arr[j]
+    def sortExperience(self):
+        self.pokemonList.sort(key=operator.attrgetter('experience'))
+
+    def sortAttack(self):
+        self.pokemonList.sort(key=operator.attrgetter('attackPower'))
+
+    def sortHealth(self):
+        self.pokemonList.sort(key=operator.attrgetter('health'))
+
+
 
