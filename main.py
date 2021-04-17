@@ -86,10 +86,10 @@ def runtimeTest(arena):
 
     # team hasn't been in battles
     noBattleTeam = Team.Team(p19, p20, p21, p22, p23, p24)
-    arena.getBattlesCorrect(noBattleTeam)
+    arena.getBattlesForTeam(noBattleTeam)
 
     # team has been in battle, print to console
-    battleList = arena.getBattlesCorrect(teamOne)
+    battleList = arena.getBattlesForTeam(teamOne)
     for b in battleList:
         print(b.toString())
 

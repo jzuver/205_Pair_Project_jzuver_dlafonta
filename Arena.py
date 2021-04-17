@@ -78,24 +78,12 @@ class Arena:
             print(b.toString())
             counter += 1
 
-    def getBattlesCorrect(self, team):
+    def getBattlesForTeam(self, team):
         # correct version
         battleList = []
         for b in self.battles:
             if b.getTeamOne() == team or b.getTeamTwo == team:
                 battleList.append(b)
-        if len(battleList) == 0:
-            print("Team has not been in any battles.")
-        else:
-            return battleList
-
-    def getBattlesIncorrect(self, team):
-        # incorrect implementation, team is appended
-        # instead of the battle
-        battleList = []
-        for b in self.battles:
-            if b.getTeamOne() == team or b.getTeamTwo == team:
-                battleList.append(team)
         if len(battleList) == 0:
             print("Team has not been in any battles.")
         else:
@@ -108,3 +96,17 @@ class Arena:
         else:
             print("Pokemon not currently in the arena.")
             return False
+
+    def hasBeenInBattleCorrect(self, t):
+        for b in self.battles:
+            for p in t.team:
+                if p == b.getWinner() or p == b.getLoser():
+                    return True
+        return False
+
+    def hasBeenInBattleIncorrect(self, t):
+        for b in self.battles:
+            for p in t.team:
+                if p == b.getWinner() or p == b.getLoser():
+                    return False
+        return True
