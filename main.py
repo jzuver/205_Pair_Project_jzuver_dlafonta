@@ -6,7 +6,7 @@ import PC
 
 def runtimeTest(arena):
     # create pokemon to populate the teams
-    p = Pokemon.Pokemon("Charizard", 15, "Fire", 100, 150, 50)
+    p1 = Pokemon.Pokemon("Charizard", 15, "Fire", 100, 150, 50)
     p2 = Pokemon.Pokemon("Pikachu", 1, "Electric", 50, 50, 25)
     p3 = Pokemon.Pokemon("Squirtle", 23, "Grass", 75, 85, 30)
     p4 = Pokemon.Pokemon("Machamp", 5, "Fighting", 50, 75, 45)
@@ -34,7 +34,7 @@ def runtimeTest(arena):
     p23 = Pokemon.Pokemon("Snorlax", 32, "Fire", 50, 120, 70)
     p24 = Pokemon.Pokemon("Dragonite", 78, "Earth", 50, 75, 35)
 
-    teamOne = Team.Team(p, p2, p3, p4, p5, p6)
+    teamOne = Team.Team(p1, p2, p3, p4, p5, p6)
     teamTwo = Team.Team(p7, p8, p9, p10, p11, p12)
     teamThree = Team.Team(p13, p14, p15, p16, p17, p18)
     teamFour = Team.Team(p19, p20, p21, p22, p23, p24)
@@ -42,14 +42,78 @@ def runtimeTest(arena):
     # put pokemon from one team into the PC
     # sort by name, print console
     pc = PC.PC()
-    for p in teamFour.team:
-        pc.deposit(p)
+    for pokemon in teamFour.team:
+        pc.deposit(pokemon)
     print("Unsorted: " + pc.toString())
     pc.sortName()
     print("Sorted: " + pc.toString())
 
+    print("****************************************")
 
+    # add objects of all classes to arena
+    arena.addPokemon(p1)
+    arena.addPokemon(p2)
+    arena.addPokemon(p3)
+    arena.addPokemon(p4)
+    arena.addPC(pc)
+    arena.addTeam(teamOne)
+    arena.addTeam(teamTwo)
+    arena.addTeam(teamThree)
+    arena.addTeam(teamFour)
+    
+    #create battles, (battles are added to arena in the doBattle method)
+    print("Perform two battles, print results.")
+    arena.doBattle(teamOne, teamTwo)
+    arena.doBattle(teamThree, teamFour)
 
+    # test getters
+    print("****************************************")
+    print("Testing getters")
+    if arena.getBattles() == None:
+        print("getter failed")
+    elif arena.getTeams() == None:
+        print("getter failed")
+    elif arena.getPokemon() == None:
+        print("getter failed")
+    elif arena.getPC() == None:
+        print("getter failed")
+    else:
+        print("All getters succcessful.")
+
+    # test search for battles team was in (correct implementation)
+    print("****************************************")
+    print("Testing search for list of battles team has been in")
+
+    # team hasn't been in battles
+    noBattleTeam = Team.Team(p19, p20, p21, p22, p23, p24)
+    arena.getBattlesCorrect(noBattleTeam)
+
+    # team has been in battle, print to console
+    battleList = arena.getBattlesCorrect(teamOne)
+    for b in battleList:
+        print(b.toString())
+
+    # show all battles that have taken place in the arena
+    print("****************************************")
+    print("All battles that have taken place in the arena: ")
+    arena.showBattles()
+
+    # print all of the battle winners
+    print("****************************************")
+    print("Battle Winners: ")
+    winners = arena.getWinners()
+    for w in winners:
+        print(w.toString())
+
+    # search for pokemon by name, first for one that exists, then for
+    # one that doesn't
+    print("****************************************")
+    print("Search for: " + p2.getName())
+    if(arena.findPokemonByName(p2.getName())):
+        print("Pokemon is in the arena")
+    # not in arena
+    print("Search for: " + p24.getName())
+    arena.findPokemonByName(p24.getName())
 
 
 

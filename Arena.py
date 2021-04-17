@@ -104,6 +104,7 @@ class Arena:
     def findPokemonByName(self, name):
         for p in self.pokemon:
             if p.getName() == name:
-                return p
+                return True
         else:
             print("Pokemon not currently in the arena.")
+            return False
