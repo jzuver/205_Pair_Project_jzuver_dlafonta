@@ -47,10 +47,12 @@ class testBattle(unittest.TestCase):
 
     def tearDown(self):
         print('tearDown()')
+        self.arena.resetClass()
 
     def testHasBeenInBattleIncorrect(self):
         # Note: this test will failed, because it uses an incorrect implementation
-        # of the hasBeenIn
+        # of the hasBeenInbattle() method
+
         # check if team has been in battle, should return True
         self.arena.doBattle(self.teamOne, self.teamTwo)
         rc = self.arena.hasBeenInBattleIncorrect(self.teamOne)
@@ -69,6 +71,70 @@ class testBattle(unittest.TestCase):
         # check if team has been in battle, should return False
         rc = self.arena.hasBeenInBattleCorrect(self.teamThree)
         self.assertFalse(rc)
+
+    def testBattleOne(self):
+        # test to make sure there is always a winner in a battle
+        # and that battles are being stored in the arena
+
+        #before battle, there should not be a winner
+        winner = self.arena.getWinners()
+        self.assertEqual(len(winner), 0)
+
+        # check that the arena is not storing a battle yet
+        # as the battle hasn't been completed
+        self.assertEqual(len(self.arena.getBattles()), 0)
+        
+        # perform a battle, check that there is 1 winner
+        self.arena.doBattle(self.teamOne, self.teamTwo)
+        winners = self.arena.getWinners()
+        self.assertEqual(len(winners), 1)
+
+        # check that the battle was stored in the arena
+        self.assertEqual(len(self.arena.getBattles()), 1)
+
+    def testBattleTwo(self):
+        # test to ensure that the battles a team has been in
+        # are properly recorded
+
+        # before team has fought in battle, should not have
+        # any battles recorded
+        battleList = self.arena.getBattlesForTeam(self.teamOne)
+        self.assertEqual(len(battleList), 0)
+
+        # perform the battle, check that the team's participation
+        # has been recorded
+        self.arena.doBattle(self.teamOne, self.teamTwo)
+        battleList = self.arena.getBattlesForTeam(self.teamOne)
+        self.assertEqual(len(battleList), 1)
+
+        # do it again, check that the team has been a part of two battles
+        self.arena.doBattle(self.teamOne, self.teamTwo)
+        battleList = self.arena.getBattlesForTeam(self.teamOne)
+        self.assertEqual(len(battleList), 2)
+
+    def testPokemon(self):
+        # test that pokemon are stored in the arena, and
+        # that they can be found by name
+
+        # check that the 5 pokemon are stored in the arena
+        self.arena.addPokemon(self.p1)
+        self.arena.addPokemon(self.p2)
+        self.arena.addPokemon(self.p3)
+        self.arena.addPokemon(self.p4)
+        self.arena.addPokemon(self.p5)
+        self.assertEqual(len(self.arena.getPokemon()), 5)
+
+        # check for a pokemon not in there, should return False
+        self.assertFalse(self.arena.findPokemonByName(self.p15))
+        
+        # check for a pokemon that is stored, should return true
+        name = self.p1.getName()
+        self.assertTrue(self.arena.findPokemonByName(name))
+
+        # remove the pokemon, check to see that they are removed, should return false
+        self.arena.removePokemon(self.p1)
+        self.assertFalse(self.arena.findPokemonByName(name))
+
 
 if __name__ == "__main__":
     unittest.main()

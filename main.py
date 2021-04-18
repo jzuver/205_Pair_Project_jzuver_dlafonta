@@ -65,6 +65,11 @@ def runtimeTest(arena):
     print("Perform two battles, print results.")
     arena.doBattle(teamOne, teamTwo)
     arena.doBattle(teamThree, teamFour)
+    counter = 1
+    for b in arena.getBattles():
+        print("Battle: " + str(counter))
+        print(b.toString())
+        counter+= 1
 
     # test getters
     print("****************************************")

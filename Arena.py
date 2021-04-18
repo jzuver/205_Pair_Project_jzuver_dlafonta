@@ -49,6 +49,18 @@ class Arena:
     def addPC(self, pc):
         self.PC.add(pc)
 
+    def removeBattle(self, battle):
+        self.battles.remove(battle)
+
+    def removeTeam(self, team):
+        self.battles.remove(team)
+
+    def removePokemon(self, pokemon):
+        self.pokemon.remove(pokemon)
+
+    def removePC(self, pc):
+        self.battles.remove(pc)
+
     def doBattle(self, teamOne, teamTwo):
         # create instance of battle, pick a random pokemon from each team,
         # and have them fight
@@ -59,7 +71,7 @@ class Arena:
         # perform battle, print results.
         battle.startBattle()
         self.addBattle(battle)
-        print(battle.toString())
+        #print(battle.toString())
 
     def getWinners(self):
         winners = []
@@ -86,6 +98,7 @@ class Arena:
                 battleList.append(b)
         if len(battleList) == 0:
             print("Team has not been in any battles.")
+            return battleList
         else:
             return battleList
 
@@ -110,3 +123,9 @@ class Arena:
                 if p == b.getWinner() or p == b.getLoser():
                     return False
         return True
+
+    def resetClass(self):
+        self.battles = set()
+        self.teams = set()
+        self.pokemon = set()
+        self.PC = set()
