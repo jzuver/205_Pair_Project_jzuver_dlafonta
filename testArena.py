@@ -49,7 +49,8 @@ class testBattle(unittest.TestCase):
         print('tearDown()')
 
     def testHasBeenInBattleIncorrect(self):
-
+        # Note: this test will failed, because it uses an incorrect implementation
+        # of the hasBeenIn
         # check if team has been in battle, should return True
         self.arena.doBattle(self.teamOne, self.teamTwo)
         rc = self.arena.hasBeenInBattleIncorrect(self.teamOne)
@@ -60,7 +61,6 @@ class testBattle(unittest.TestCase):
         self.assertFalse(rc)
 
     def testHasBeenInBattleCorrect(self):
-
         # check if team has been in battle, should return True
         self.arena.doBattle(self.teamOne, self.teamTwo)
         rc = self.arena.hasBeenInBattleCorrect(self.teamOne)
